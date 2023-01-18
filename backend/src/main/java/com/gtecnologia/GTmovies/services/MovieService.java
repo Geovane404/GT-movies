@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gtecnologia.GTmovies.dtos.MovieDTO;
 import com.gtecnologia.GTmovies.entities.Movie;
 import com.gtecnologia.GTmovies.repositories.MovieRepository;
+import com.gtecnologia.GTmovies.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class MovieService {
@@ -29,7 +30,7 @@ public class MovieService {
 	public MovieDTO findMovieById(Long id) {
 		
 		Optional<Movie> obj = movieRepository.findById(id);
-		Movie entity = obj.get();
+		Movie entity = obj.orElseThrow(() -> new ResourceNotFoundException("Id não encontrado!"));
 		return new MovieDTO(entity);
 	}
 }
