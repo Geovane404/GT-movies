@@ -1,10 +1,10 @@
 package com.gtecnologia.GTmovies.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,5 +23,13 @@ public class MovieService {
 
 		List<Movie> list = movieRepository.findAll();
 		return list.stream().map(x -> new MovieDTO(x)).collect(Collectors.toList());
+	}
+
+	@Transactional(readOnly = true)
+	public MovieDTO findMovieById(Long id) {
+		
+		Optional<Movie> obj = movieRepository.findById(id);
+		Movie entity = obj.get();
+		return new MovieDTO(entity);
 	}
 }
