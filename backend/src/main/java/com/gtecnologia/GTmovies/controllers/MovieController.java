@@ -52,4 +52,11 @@ public class MovieController {
 		Page<ReviewDTO> page = movieService.findPageReviewByMovie(idMovie, pageable);
 		return ResponseEntity.ok().body(page);
 	}
+	
+	@GetMapping(value = "/{idMovie}/reviews/list")
+	public ResponseEntity<List<ReviewDTO>> findListReviewByMovie(@PathVariable Long idMovie){
+		
+		List<ReviewDTO> list = movieService.findListReviewByMovie(idMovie);
+		return ResponseEntity.ok().body(list);
+	}
 }

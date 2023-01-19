@@ -1,5 +1,7 @@
 package com.gtecnologia.GTmovies.repositories;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,4 +16,7 @@ public interface ReviewRepository extends JpaRepository<Review, Long>{
 			+ "WHERE obj.movie = :movie")
 	Page<Review> findPageReviewByMovie(Movie movie, Pageable pageable);
 
+	@Query("SELECT obj FROM Review obj "
+			+ "WHERE obj.movie.id = :idMovie")
+	List<Review> findListReviewByMovie(Long idMovie);
 }

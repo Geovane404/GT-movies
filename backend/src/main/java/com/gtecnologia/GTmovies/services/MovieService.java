@@ -54,7 +54,7 @@ public class MovieService {
 		Page<Movie> page = movieRepository.findPageMovieByGenre(genre, pageable);
 		return page.map(x -> new MovieDTO(x));
 	}
-
+	
 	@Transactional(readOnly = true)
 	public Page<ReviewDTO> findPageReviewByMovie(Long idMovie, Pageable pageable) {
 		
@@ -62,6 +62,11 @@ public class MovieService {
 		Page<Review> page = reviewRepository.findPageReviewByMovie(movie, pageable);
 		return page.map(x -> new ReviewDTO(x));
 	}
-
 	
+	@Transactional(readOnly = true)
+	public List<ReviewDTO> findListReviewByMovie(Long idMovie) {
+		
+		List<Review> list = reviewRepository.findListReviewByMovie(idMovie);
+		return list.stream().map(x -> new ReviewDTO(x)).collect(Collectors.toList());
+	}
 }
