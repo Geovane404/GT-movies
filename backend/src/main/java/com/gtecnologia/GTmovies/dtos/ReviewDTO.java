@@ -8,6 +8,8 @@ public class ReviewDTO {
 	private String text;
 	private Long movieId;
 	private UserDTO user;
+	
+	private Long userId;
 
 	public ReviewDTO() {
 	}
@@ -24,6 +26,7 @@ public class ReviewDTO {
 		text = entity.getText();
 		movieId = entity.getMovie().getId();
 		user = new UserDTO(entity.getUser());
+		userId = entity.getUser().getId();
 	}
 
 	public Long getId() {
@@ -57,7 +60,15 @@ public class ReviewDTO {
 	public void setUser(UserDTO user) {
 		this.user = user;
 	}
+	
+	public Long getUserId() {
+		return userId;
+	}
 
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
