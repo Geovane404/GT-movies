@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gtecnologia.GTmovies.dtos.MovieDTO;
+import com.gtecnologia.GTmovies.dtos.ReviewDTO;
 import com.gtecnologia.GTmovies.services.MovieService;
 
 @RestController
@@ -42,6 +43,13 @@ public class MovieController {
 			Pageable pageable){
 		
 		Page<MovieDTO> page = movieService.findPageMovieByGenre(genreId, pageable);
+		return ResponseEntity.ok().body(page);
+	}
+	
+	@GetMapping(value = "/{idMovie}/reviews")
+	public ResponseEntity<Page<ReviewDTO>> findPageReviewByMovie(@PathVariable Long idMovie, Pageable pageable){
+		
+		Page<ReviewDTO> page = movieService.findPageReviewByMovie(idMovie, pageable);
 		return ResponseEntity.ok().body(page);
 	}
 }

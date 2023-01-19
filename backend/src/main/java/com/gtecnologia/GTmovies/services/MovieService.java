@@ -11,10 +11,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gtecnologia.GTmovies.dtos.MovieDTO;
+import com.gtecnologia.GTmovies.dtos.ReviewDTO;
 import com.gtecnologia.GTmovies.entities.Genre;
 import com.gtecnologia.GTmovies.entities.Movie;
+import com.gtecnologia.GTmovies.entities.Review;
 import com.gtecnologia.GTmovies.repositories.GenreRepository;
 import com.gtecnologia.GTmovies.repositories.MovieRepository;
+import com.gtecnologia.GTmovies.repositories.ReviewRepository;
 import com.gtecnologia.GTmovies.services.exceptions.ResourceNotFoundException;
 
 @Service
@@ -25,6 +28,9 @@ public class MovieService {
 	
 	@Autowired
 	private GenreRepository genreRepository;
+	
+	@Autowired
+	private ReviewRepository reviewRepository;
 
 	@Transactional(readOnly = true)
 	public List<MovieDTO> findListMovie() {
@@ -48,4 +54,14 @@ public class MovieService {
 		Page<Movie> page = movieRepository.findPageMovieByGenre(genre, pageable);
 		return page.map(x -> new MovieDTO(x));
 	}
+
+	@Transactional(readOnly = true)
+	public Page<ReviewDTO> findPageReviewByMovie(Long idMovie, Pageable pageable) {
+		
+		Movie movie = movieRepository.getOne(idMovie);
+		Page<Review> page = reviewRepository.findPageReviewByMovie(movie, pageable);
+		return page.map(x -> new ReviewDTO(x));
+	}
+
+	
 }
