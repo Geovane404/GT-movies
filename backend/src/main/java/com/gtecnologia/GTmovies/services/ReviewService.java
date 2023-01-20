@@ -21,6 +21,9 @@ public class ReviewService {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private AuthService authService;
 
 	@Transactional
 	public ReviewDTO postNewReview(ReviewDTO dto) {
@@ -29,7 +32,7 @@ public class ReviewService {
 		
 		entity.setText(dto.getText());
 		entity.setMovie(movieRepository.getOne(dto.getMovieId()));
-		entity.setUser(userRepository.getOne(dto.getUserId()));
+		entity.setUser(authService.authenticated());
 		entity = reviewRepository.save(entity);
 		return new ReviewDTO(entity);
 	}
