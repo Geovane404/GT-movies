@@ -2,6 +2,8 @@ package com.gtecnologia.GTmovies.controllers;
 
 import java.net.URI;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +23,7 @@ public class ReviewController {
 	private ReviewService reviewService;
 	
 	@PostMapping
-	public ResponseEntity<ReviewDTO> postNewReview(@RequestBody ReviewDTO dto){
+	public ResponseEntity<ReviewDTO> postNewReview(@Valid @RequestBody ReviewDTO dto){ 
 		
 		dto = reviewService.postNewReview(dto);
 		

@@ -1,11 +1,18 @@
 package com.gtecnologia.GTmovies.dtos;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import com.gtecnologia.GTmovies.entities.Review;
 
 public class ReviewDTO {
 
 	private Long id;
+	
+	@NotBlank(message = "Campo obrigatório!")
 	private String text;
+	
+	@NotNull(message = "Informe o filme para avaliação!")
 	private Long movieId;
 	private UserDTO user;
 
