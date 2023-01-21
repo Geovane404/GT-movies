@@ -1,5 +1,8 @@
 package com.gtecnologia.GTmovies.dtos;
 
+import com.gtecnologia.GTmovies.services.validation.UserInsertValid;
+
+@UserInsertValid
 public class UserInsertDTO extends UserDTO{
 	private static final long serialVersionUID = 1L;
 	

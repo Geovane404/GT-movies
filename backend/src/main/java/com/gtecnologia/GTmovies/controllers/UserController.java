@@ -2,6 +2,8 @@ package com.gtecnologia.GTmovies.controllers;
 
 import java.net.URI;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +24,7 @@ public class UserController {
 	private UserService userService;
 	
 	@PostMapping
-	public ResponseEntity<UserDTO> newUser(@RequestBody UserInsertDTO dto){
+	public ResponseEntity<UserDTO> newUser(@Valid @RequestBody UserInsertDTO dto){
 		
 		 UserDTO newDto = userService.newUser(dto);
 		
