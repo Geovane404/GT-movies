@@ -11,6 +11,11 @@ public class UserInsertDTO extends UserDTO{
 	public UserInsertDTO() {
 		super();
 	}
+	
+	public UserInsertDTO(Long id, String name, String email, String password) {
+		super(id, name, email);
+		this.password = password;
+	}
 
 	public String getPassword() {
 		return password;

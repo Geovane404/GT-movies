@@ -1,5 +1,7 @@
 package com.gtecnologia.GTmovies.factories;
 
+import com.gtecnologia.GTmovies.dtos.ReviewDTO;
+import com.gtecnologia.GTmovies.dtos.UserInsertDTO;
 import com.gtecnologia.GTmovies.entities.Genre;
 import com.gtecnologia.GTmovies.entities.Movie;
 import com.gtecnologia.GTmovies.entities.Review;
@@ -26,5 +28,15 @@ public class Factory {
 	public static User createUser() {
 		
 		return new User(1L, "João", "joao@gmail.com", "123456");
+	}
+	
+	public static UserInsertDTO createUserInsertDto() {
+		
+		return new UserInsertDTO(null, "João", "joao@gmail.com", "123456");
+	}
+
+	public static ReviewDTO createReviewDto() {
+		
+		return new ReviewDTO(createReview());
 	}
 }
