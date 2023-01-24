@@ -1,5 +1,6 @@
 package com.gtecnologia.GTmovies.factories;
 
+import com.gtecnologia.GTmovies.dtos.GenreDTO;
 import com.gtecnologia.GTmovies.dtos.ReviewDTO;
 import com.gtecnologia.GTmovies.dtos.UserInsertDTO;
 import com.gtecnologia.GTmovies.entities.Genre;
@@ -38,5 +39,10 @@ public class Factory {
 	public static ReviewDTO createReviewDto() {
 		
 		return new ReviewDTO(createReview());
+	}
+
+	public static GenreDTO createGenreDto() {
+		// TODO Auto-generated method stub
+		return new GenreDTO(createGenre());
 	}
 }
