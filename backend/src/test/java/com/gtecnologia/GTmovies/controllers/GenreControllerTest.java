@@ -22,8 +22,6 @@ import com.gtecnologia.GTmovies.factories.Factory;
 import com.gtecnologia.GTmovies.factories.TokenUtil;
 import com.gtecnologia.GTmovies.services.GenreServices;
 
-import javassist.expr.NewArray;
-
 
 @SpringBootTest
 @AutoConfigureMockMvc
